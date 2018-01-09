@@ -1,0 +1,5 @@
+// Create Task
+curl -d '{"name":"Task 1", "userId": "user-id", "done": false}' -H "Content-Type: application/json" -X POST http://localhost:8080/tasks
+
+// Get Tasks
+curl http://localhost:8080/tasks

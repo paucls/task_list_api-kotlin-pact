@@ -5,10 +5,7 @@ import com.paucls.tasklist.application.TaskService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.*
 
 @Controller
 class TaskController(val taskService: TaskService) {
@@ -22,6 +19,11 @@ class TaskController(val taskService: TaskService) {
     @RequestMapping(value = ["/tasks"], method = [RequestMethod.GET])
     fun getAll(): ResponseEntity<List<Task>> {
         return ResponseEntity(taskService.getAll(), HttpStatus.OK)
+    }
+
+    @RequestMapping(value = ["/tasks"], method = [RequestMethod.POST])
+    fun create(@RequestBody task: Task): ResponseEntity<Task> {
+        return ResponseEntity(taskService.create(task), HttpStatus.CREATED)
     }
 
     @RequestMapping(value = ["/tasks/{taskId}"], method = [RequestMethod.DELETE])

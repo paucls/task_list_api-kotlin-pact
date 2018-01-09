@@ -10,6 +10,10 @@ class TaskService(val taskRepository: TaskRepository) {
         return taskRepository.findAll()
     }
 
+    fun create(task: Task): Task {
+        return taskRepository.save(task)
+    }
+
     fun delete(taskId: String) {
         taskRepository.deleteById(taskId)
     }
